@@ -38,6 +38,8 @@
 
 - 1 + 1 not perfect equal 2 in Basic Computer
 
+---
+
 ### addition for String
 
 | What you type... | What you get | example                 | print(example)        |
@@ -92,6 +94,8 @@ planet!
 dwarf planet!
 ```
 
+---
+
 ### (python) Data Group Type
 
 | Type         | define example                   | description                            |
@@ -113,6 +117,8 @@ def dataGroup[num1:num2]:
     return mylist
 ```
 
+---
+
 ### List methods
 
 | appearance       | parameter       | description                          |
@@ -123,11 +129,15 @@ def dataGroup[num1:num2]:
 | data in List     | no-func         | return bool var for data in List     |
 | data not in List | no-func         | return bool var for data not in List |
 
+---
+
 ### Dictionaries
 
 - Dictionaries["key"] == value(data)
 - Dictionaries["new"] = assign value
 - data in Dictionaries 가능
+
+---
 
 ### Loops
 
@@ -152,6 +162,8 @@ def func_name(parameter, argument_name, ...):
 ```
 
 - pass: ':'에 대해 함수 없음을 의미하거나 def 내에서 continue와 같은 역할을 하는 것으로 보인다.
+
+---
 
 ### import modules
 
