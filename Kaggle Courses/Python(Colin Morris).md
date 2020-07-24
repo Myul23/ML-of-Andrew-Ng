@@ -11,6 +11,14 @@
 - [Sub-link](https://www.kaggle.com/learn/python)
 - [python for non-programmers](https://wiki.python.org/moin/BeginnersGuide/NonProgrammers)
 
+### [learning python](https://docs.python.org/ko/3/contents.html)
+
+> from learntools.core import binder; binder.bind(globals())<br />import learntools.python.ex1, ex2, ex3, ex4, ex5, ex6, ex7
+
+- q1.hint()
+- q1.check()
+- q1.solution()
+
 ### Boolean Operator
 
 | Operator | Description                | Operator | Description                  |

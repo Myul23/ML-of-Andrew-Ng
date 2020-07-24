@@ -19,8 +19,36 @@ English version of modern definition of ML
 - 이런 것을 경험으로부터 학습(learn)했다고 표현한다.
 - 이전 Arthur Samuel: ML이란 컴퓨터가 명시적 프로그램 없이 스스로 학습할 수 있는 능력을 공부하는 학문.
 
+### Three compositions of ML
+
 > In supervised learning, we are given a data set and already know what our correct output should look like, having the idea that there is a relationship between the input and the output.
 
+- 지도 학습
 - Supervised Learning means using data set includes correct outputs.
 - Regression은 연속이라는 특징을 가진 값을 모형화하고 예측하려고 한다는 것을 뜻한다.
 - Claasification은 연속하지 않은, 특히 범주적인 특징을 가진 값들에 대한 모형화와 예측을 시도하는 것이다.
+
+> Unsupervised Learning allows us to approach problems with little or no idea what our results should look like. We can derive this structure by clustering the data based on relationships among the variables in the data.
+
+- 비지도 학습
+- class 데이터가 없는 경우, 모두 같은 class인 경우, class라는 변수 자체가 없는 경우로 나뉜다.
+- 따라서, unsupervised Learning grouping은 Clustering으로 몇 개의 group, 몇 개의 구조로 구성되어 있는지를 묻는 것이며 해당 구조체를 cluster라고 부른다.
+- Organize computing clusters, Social network analysis, Market segmentation, Astronomial data analysis
+
+> 음설 관련 clustering<br />[W, s, v] = svd((repmat(sum(x.*x, 1), size(x, 1), 1).*x)\*x');<p style="text-align: right;">- Source: Sam Roweis, Yair Weiss & Eero Simoncelli</p>
+
+- 대괄호에 대한 자유로운 접근과 세미콜론이 있는 것으로 보아 Java에 가깝지 않을까라는 생각이 드나, Octave라는 open source라고 한다.
+- svd( ): 특이값 분해(singular value decomposition)
+
+### Basic configuration concepts of ML
+
+- h: hypothesis, 우리가 학습시켜 얻은 모델이자 모델의 수식
+- h(x): X -> Y, h maps from x's to y's
+- 모델을 결정함에 따라 구해야할 parameters도 결정된다.
+
+> Cost function is same Loss function and j-coefficient parameter-function
+
+- 비용 함수 (손실 함수): 모델 모수를 찾을 때 고려할 사항으로, 대체로 오차의 값을 최소화하는 회귀계수를 찾고자 한다.
+- LOSS: MSE or SSE(최소제곱법) and so on
+- 생각해보면 ISLR 때부터 parameter 값의 변동에 의한 Loss 값의 그래프는 반복해왔던 거인데, 잘 몰랐다.
+- Goal is usually minimize Cost function

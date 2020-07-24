@@ -2,17 +2,6 @@
 
 - add element python grammar
 
-### [learning python](https://docs.python.org/ko/3/contents.html)
-
-> from learntools.core import binder; binder.bind(globals())<br />
-> import learntools.python.ex1, ex2, ex3, ex4, ex5, ex6, ex7
-
-- q1.hint()
-- q1.check()
-- q1.solution()
-
----
-
 ### Abbreviation Name
 
 | expression | full expression    |  -  | expression | full expression                         |
