@@ -58,7 +58,7 @@ English version of modern definition of ML
 > Start with some parameters(alpha, beta, gamma, delta etc)<br />
 > Keep changing parameters to reduce Cost untill we hopefully end up at a minimum
 
-<img src="images/gradient_descent.jpg" style="display: block; margin: auto;" />
+<img src="images/gradient_descent.JPG" style="display: block; margin: auto;" />
 <!-- > θj := θj − α \* ∂/(∂θj) \* J(θ0,θ1) -->
 
 - 기울기 하강법
