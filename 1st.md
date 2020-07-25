@@ -58,13 +58,13 @@ English version of modern definition of ML
 > Start with some parameters(alpha, beta, gamma, delta etc)<br />
 > Keep changing parameters to reduce Cost untill we hopefully end up at a minimum
 
-<img src="images/gradient_descent.jpg" />
+<img src="images/gradient_descent.jpg" style="display: block; margin: auto;" />
 <!-- > θj := θj − α \* ∂/(∂θj) \* J(θ0,θ1) -->
 
 - 기울기 하강법
 - 최소제곱법처럼 최적의 값을 찾기 위해 parameter마다 미분에서 최솟값을 구해야 한다.
 - 수식과의 연계성을 고려해 parameter update는 모든 parameter를 한 번에 진행한다.
-<p style="border: 1px dotted grey; opacity: 0.2;"></p>
+<p style="border: 1px dotted grey; opacity: 0.4;"></p>
 
 - 모델 학습에서 모든 경우를 고려하지 않고도 최적의 비용함수 값을 찾는 방법으로 널리 사용된다.
 - 지역적 최솟값을 찾는 걸 방지하고자 다른 시작점을 두어 반복해 최적의 최솟값을 찾기도 한다.
