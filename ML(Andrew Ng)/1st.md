@@ -6,8 +6,6 @@
 
 ---
 
-## 1st
-
 English version of modern definition of ML
 
 > A computer program is said to learn from experence E with respect to some class of tasks T and perfomance measure P,, if its perfomance at tasks in T, as measured by p, improves with experience E.<p style="text-align: right;">- Tom Mitchell (Carnegie Mellon University)</p>
@@ -20,6 +18,8 @@ English version of modern definition of ML
 - 이전 Arthur Samuel: ML이란 컴퓨터가 명시적 프로그램 없이 스스로 학습할 수 있는 능력을 공부하는 학문.
 
 ### Three compositions of ML
+
+- contain Reinforcement
 
 > In supervised learning, we are given a data set and already know what our correct output should look like, having the idea that there is a relationship between the input and the output.
 
@@ -42,13 +42,35 @@ English version of modern definition of ML
 
 ### Basic configuration concepts of ML
 
-- h: hypothesis, 우리가 학습시켜 얻은 모델이자 모델의 수식
-- h(x): X -> Y, h maps from x's to y's
-- 모델을 결정함에 따라 구해야할 parameters도 결정된다.
+|         용어          |                                                                                                                                                                  |
+| :-------------------: | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+|         가설          | h: hypothesis, 우리가 학습시켜 얻은 모델이자 모델의 수식<br />- h(x): X -> Y, h maps from x's to y's                                                             |
+|         모수          | parameter, 모델을 결정함에 따라 구해야할 parameters도 결정된다.                                                                                                  |
+| 비용 함수 (손실 함수) | Cost, Loss, J-func<br />모델 모수를 찾을 때 고려할 사항으로, 대체로 오차의 값을 최소화하는 회귀계수를 찾고자 한다.<br />- LOSS: MSE or SSE(최소제곱법) and so on |
+|         목표          | Goal is usually minimize Cost function                                                                                                                           |
 
-> Cost function is same Loss function and j-coefficient parameter-function
-
-- 비용 함수 (손실 함수): 모델 모수를 찾을 때 고려할 사항으로, 대체로 오차의 값을 최소화하는 회귀계수를 찾고자 한다.
-- LOSS: MSE or SSE(최소제곱법) and so on
 - 생각해보면 ISLR 때부터 parameter 값의 변동에 의한 Loss 값의 그래프는 반복해왔던 거인데, 잘 몰랐다.
-- Goal is usually minimize Cost function
+- Contour: 일종의 등고선 그래프로 z축 값이 같은 이들을 연겷한 그래프
+- 대체로 z축을 밀어넣어 2차원으로 필요한 등고선(contour line)만을 표시한다.
+
+### Gradient descent
+
+> Start with some parameters(alpha, beta, gamma, delta etc)<br />
+> Keep changing parameters to reduce Cost untill we hopefully end up at a minimum
+
+<img src="images/gradient_descent.jpg" />
+<!-- > θj := θj − α \* ∂/(∂θj) \* J(θ0,θ1) -->
+
+- 기울기 하강법
+- 최소제곱법처럼 최적의 값을 찾기 위해 parameter마다 미분에서 최솟값을 구해야 한다.
+- 수식과의 연계성을 고려해 parameter update는 모든 parameter를 한 번에 진행한다.
+<p style="border: 1px dotted grey; opacity: 0.2;"></p>
+
+- 모델 학습에서 모든 경우를 고려하지 않고도 최적의 비용함수 값을 찾는 방법으로 널리 사용된다.
+- 지역적 최솟값을 찾는 걸 방지하고자 다른 시작점을 두어 반복해 최적의 최솟값을 찾기도 한다.
+
+|         word         | description                                             |
+| :------------------: | ------------------------------------------------------- |
+|    Learnign Rate     | 발걸음, 보폭으로 표현되며 얼마만큼 움직일지에 대한 측도 |
+|    Local Optimum     | 지역적 최솟값으로 기울기 하강법을 통해 찾은 극(소)값들  |
+| simultaneosly update |
