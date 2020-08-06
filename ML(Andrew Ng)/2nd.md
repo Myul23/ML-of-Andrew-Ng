@@ -10,7 +10,7 @@
 
 _Multivariate linear Regression_
 
-> hθ(x) = θ^tx
+> hθ(x) = θ'x
 
 | notaion | description                                        |
 | ------- | -------------------------------------------------- |
