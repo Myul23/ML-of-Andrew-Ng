@@ -1,3 +1,7 @@
+> # Octave
+
+---
+
 ```theta is 2-rows vector
 function [jVal, gradient] = costFunction(theta)
   jVal = (theta(1) - 5)^2 + (theta(2) - 5)^2;
