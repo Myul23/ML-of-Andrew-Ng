@@ -21,7 +21,3 @@
 
 - markdown 사용법 총정리: [감사합니다](https://heropy.blog/2017/09/30/markdown/)
 - 필요에 따라 코드집도 추가될 수 있다. 그럴 때는 파일화시켜 모아놓도록 합니다.
-
----
-
-- github markdown이 예전 버전이라 그런 건지 html hr-element에 대한 style이 안 먹는다. 하지만 약간의 공간이 벌어지는 걸로 만족했다.
