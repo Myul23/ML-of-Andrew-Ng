@@ -19,7 +19,7 @@ y ∈ {0, 1} - 0: Negative Class
 
 - 관심사가 악성 종양인지 아닌지를 판단하는 것이라면, positive를 악성 종양으로 negative를 그렇지 않은 일반 종양으로 분류할 수 있다.
 
-1. linear regression model
+#### 1. linear regression model
 
 | concept               | description                                         |
 | --------------------- | --------------------------------------------------- |
@@ -52,7 +52,7 @@ z = 0, e^0 = 1 → g(z) = 0.5
 - 어떻게 설정하냐에 따라 parameter의 부호가 달라지지만, 기본은 변하지 않는다.
 - for decision boundary, set region each class
 
-2. Logistic regression model
+#### 2. Logistic regression model
 
 - response의 범위 제한을 위해 모델로부터 나온 값을 변형하는 것에서 한 단계 나아가 모델에 변형식을 넣는다.
 - 복잡한 sigmoid나 logit을 MSE에 넣게 되면, (극솟값이 하나가 아니라서) non-convex (비볼록 함수)가 나온다.
@@ -67,10 +67,47 @@ Cost(hθ(x), y) → ∞, if y = 1 and hθ(x) → 0
 ```
 
 - -MLE: Cost(hθ(x), y) = - y\*ln(hθ(x)) - (1 - y)\*ln(1 - hθ(x))
-- 선형 회귀의 기울기 하강법을 진행할 때와 식이 같다.
 
 <img src="images/logistic_gradient_descent.JPG" style="display: block; margin: auto;" />
 
-### 2. Multi-classes classification
+- 여전히 gradient descent을 최소의 cost 값을 찾는 최적화 알고리즘으로 사용한다.
+- 선형 회귀의 기울기 하강법을 진행할 때와 식이 같다.
+- Octave에선 fminunc라는 함수를 통해 상황에 따라 더 나은 최적화 알고리즘을 사용해 optimized parameter를 구한다.
 
-_다중 분류_
+<table>
+  <tr>
+    <td colspan="3">Other optimization algorithm</td>
+    <td>than gradient descent</td>
+  </tr>
+  <tr>
+    <td rowspan="3">Conjugate gradient</td>
+    <td rowspan="3">BFGS</td>
+    <td rowspan="3">L-BFGS</td>
+    <td>No need to manually pick α</td>
+  </tr>
+  <tr>
+    <td>Often faster than gradient descent.</td>
+  </tr>
+  <tr>
+    <td>More complex</td>
+  </tr>
+</table>
+
+### 2. Multiclass classification
+
+_다중 분류, 여러 개의 binary classification으로 나누는 게 알고리즘의 핵심_
+
+1. One-vs-all (one-vs-rest)
+
+<!--```
+Train a logistic regression classifier hθ^i(x) for each class to predict the probability that y = i
+On a new input x, to make prediction, pick the claa i that maximizes
+```-->
+
+```
+hθ^i(x) = Pr(y = i|x; θ), i = 1,2,3
+```
+
+- 모든 class에 대해 해당 class와 나머지의 binary 분류로 만들어 학습시킨다.
+- 당연하게도 class의 갯수만큼 binary classifier가 나온다.
+- 새로운 데이터에 대해서 가장 가능성, hθ^i(x)이 높은 class로 분류한다.
