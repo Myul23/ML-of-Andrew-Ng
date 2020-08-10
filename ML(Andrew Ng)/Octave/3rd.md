@@ -2,7 +2,7 @@
 
 ---
 
-```theta is 2-rows vector
+```theta is 2-rows vector example
 function [jVal, gradient] = costFunction(theta)
   jVal = (theta(1) - 5)^2 + (theta(2) - 5)^2;
   gradient = zeros(2, 1);
