@@ -8,7 +8,7 @@
 
 ### What is Machine Learning
 
-> Machine Learning is a field of study that gives computers the ability to learn without being explicitly programmed<span style="float: right;">- Arthur Samuel (1959)</span>
+> Machine Learning is a field of study that gives computers the ability to learn without being explicitly programmed<p style="text-align: right;">- Arthur Samuel (1959)</p>
 
 - 모든 경우의 수를 프로그래머가 다 알아내어 프로그래밍하는 것은 사실상 불가능.
 - 이래서 모든 경우의 수를 코딩하는 것이 아니라 특정 기준을 통해 상황을 정의하고 그에 따라 행동하자.

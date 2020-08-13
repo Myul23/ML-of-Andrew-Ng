@@ -8,7 +8,7 @@
 
 English version of modern definition of ML
 
-> A computer program is said to learn from experence E with respect to some class of tasks T and perfomance measure P,, if its perfomance at tasks in T, as measured by p, improves with experience E.<span style="float: right;">- Tom Mitchell (Carnegie Mellon University)</span>
+> A computer program is said to learn from experence E with respect to some class of tasks T and perfomance measure P,, if its perfomance at tasks in T, as measured by p, improves with experience E.<p style="text-align: right;">- Tom Mitchell (Carnegie Mellon University)</p>
 
 > Machine Learning은 매 만들어지고 사용하는 데이터를 뜻하는 경험(E)과 해당 경험을 위한 작업(T), 작업을 통해 얻어지는 perfomance의 측도인 성능(P)으로 구성된다.
 
