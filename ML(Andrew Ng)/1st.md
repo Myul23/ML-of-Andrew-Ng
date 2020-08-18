@@ -48,7 +48,7 @@ English version of modern definition of ML
 
 |         용어          |                                                                                                                                                                  |
 | :-------------------: | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-|         가설          | h: hypothesis, 우리가 학습시켜 얻은 모델이자 모델의 수식<br />- h(x): X -> Y, h maps from x's to y's                                                             |
+|         가설          | h: hypothesis, 우리가 학습시켜 얻은 모델이자 모델의 수식<br />- h(x): X → Y, h maps from x's to y's                                                              |
 |         모수          | parameter, 모델을 결정함에 따라 구해야할 parameters도 결정된다.                                                                                                  |
 | 비용 함수 (손실 함수) | Cost, Loss, J-func<br />모델 모수를 찾을 때 고려할 사항으로, 대체로 오차의 값을 최소화하는 회귀계수를 찾고자 한다.<br />- LOSS: MSE or SSE(최소제곱법) and so on |
 |         목표          | Goal is usually minimize Cost function                                                                                                                           |

@@ -1,0 +1,246 @@
+---
+title: "빅데이터 분석의 첫걸음 R코딩"
+output: github_document
+---
+
+```{r setup, include = F}
+knitr::opts_chunk$set(echo = T, fig.align = "center")
+```
+
+- Author: 장용식, 최진호
+- Book: <https://book.naver.com/bookdb/book_detail.nhn?bid=16324211>
+- coding은 example들을 제외하고는 programming으로 넘겼습니다.
+
+---
+
+## 5. 차트 프로그래밍
+
+_데이터 분석결과를 효과적으로 전달하는 수단으로 차트를 사용한다._
+
+|        |        | description                                              | 예            |
+| ------ | ------ | -------------------------------------------------------- | ------------- |
+| 범주형 | 명목형 | 단순히 데이터의 분류 목적                                | 성별, 지역    |
+|        | 순서형 | 데이터 간의 순서가 있다                                  | 성적 등급     |
+| 수치형 | 이산형 | 일정간 간격이 있는 데이터로 절대 0을 갖는다              | 근무년수      |
+|        | 연속형 | 셀 수 없이 연속적인 값의 데이터로 0이 무를 뜻하지 아니다 | 키, 지진 규모 |
+
+> 범주형 데이터를 비교할 때에는 파이 차트와 바 차트를, 수치형 데이터의 분포를 표현할 때는 산포도, 히스토그램, 박스플롯 등을 이용한다.
+
+```{r message = F}
+library(RColorBrewer)
+```
+
+### 줄기-잎 그림 (Stem-and-Leaf plot)
+
+```{r rivers}
+## rivers
+stem(rivers)
+stem(rivers, scale = 2)
+```
+
+### Pie chart
+
+```{r}
+city <- c("서울", "부산", "대구", "인천", "광주", "대전", "울산")
+pm25 <- c(18, 21, 21, 17, 8, 11, 25)
+colors <- c("red", "orange", "yellow", "green", "lightblue", "blue", "violet")
+pie(pm25, labels = city, col = colors, main = "지역별 초미세먼지 농도")
+pie(pm25, labels = city, col = colors, main = "지역별 초미세먼지 농도", clockwise = T)
+```
+
+#### addition: palette
+
+```{r}
+## library(gdRdriver) ## package에 상관없이 해당 palette를 부를 수 있다.
+x <- rep(1, 12)
+```
+
+```{r}
+par(mfrow = c(2,3))
+pie(x, labels = seq(1, 12), col = rainbow(12))
+pie(x, labels = seq(1, 12), col = heat.colors(12))
+pie(x, labels = seq(1, 12), col = terrain.colors(12))
+pie(x, labels = seq(1, 12), col = topo.colors(12))
+pie(x, labels = seq(1, 12), col = cm.colors(12))
+```
+
+```{r eval = F}
+library(RColorBrewer)
+display.brewer.all()
+display.brewer.pal(9, name = "Greens")
+display.brewer.pal(6, name = "Greens")
+```
+
+> display.brewer.pal( ): 지정한 수만큼 해당 이름의 팔레트에서 뽑아온다.
+
+```{r message = F}
+library(RColorBrewer)
+greens <- brewer.pal(7, "Greens")
+pct <- round(pm25/sum(pm25) * 100, 0)
+city_label <- paste(city, ", ", pct, '%', sep = "")
+```
+
+```{r}
+pie(pm25, labels = city_label, col = greens, main = "지역별 초미세먼지 농도", clockwise = T)
+```
+
+### Bar chart
+
+```{r}
+dept <- c("영업 1팀", "영업 2팀", "영업 3팀", "영업 4팀")
+sales01 <- c(4, 12, 5, 8)
+```
+
+```{r}
+barplot(sales01, names.arg = dept, main = "부서별 영업 실적(1분기)", col = rainbow(length(dept)),
+        xlab = "부서", ylab = "영업 실적(억 원)", ylim = c(0, 15))
+abline(h = mean(sales01), col = "orange", lty = 2)
+```
+
+라벨 출력을 해보자.
+
+```{r}
+bp <- barplot(sales01, names.arg = dept, main = "부서별 영업 실적(1분기)", col = rainbow(length(dept)),
+              xlab = "부서", ylab = "영업 실적(억 원)", ylim = c(0, 15))
+text(bp, y = sales01, labels = sales01, pos = 3)
+```
+
+수평으로 만들어보자.
+
+```{r}
+barplot(sales01, names.arg = dept, main = "부서별 영업 실적(1분기)", col = rainbow(length(dept)),
+        ylab = "부서", xlab = "영업 실적(억 원)", xlim = c(0, 15), horiz = T)
+```
+
+스택형 bar plot
+
+```{r}
+sales02 <- c(12, 8, 8, 4)
+sales <- rbind(sales01, sales02)
+sales
+```
+
+범례의 위치가 차트 위인 경우, 오른쪽인 경우
+
+```{r}
+legend.lbl <- c("1분기", "2분기")
+par(mfrow = c(1,2))
+barplot(sales, main = "부서별 영업 실적(1~2 분기)", names.arg = dept, xlab = "부서", ylab = "영업 실적(억 원)", col = c("green", "orange"), legend.text = legend_lbl, ylim = c(0, 30), arg.legend = list(x = "top", ncol = 2))
+barplot(sales, main = "부서별 영업 실적(1~2 분기)", names.arg = dept, xlab = "부서", ylab = "영업 실적(억 원)", col = c("green", "orange"), legend.text = legend_lbl, xlim = c(0, 7),  arg.legend = list(x = "right"))
+```
+
+그룹형 차트 + 차트 밖에 위치한 범례
+
+```{r}
+barplot(sales, main = "부서별 영업 실적(1~2 분기)", names.arg = dept, xlab = "부서", ylab = "영업 실적(억 원)", col = c("green", "orange"), legend.text = legend_lbl, xlim = c(0, 17), arg.legend = list(x = "right"), beside = T)
+```
+
+### X-Y plotting
+
+```{r women}
+plot(women$height, women$weight, xlab = "키", ylab = "몸무게", main = "키와 몸무게의 변화")
+```
+
+pch를 변환시켜보자.
+
+```{r women}
+plot(women$height, women$weight, xlab = "키", ylab = "몸무게", main = "키와 몸무게의 변화", pch = 23, col = "blue", bg = "yellow", cex = 1.5)
+```
+
+```{r}
+plot(women$height, women$weight, xlab = "키", ylab = "몸무게", type = "p")
+```
+
+> type은 그래프 선의 모양을 정하는 매개변수다.
+
+lwd를 다르게 설정해보자.
+
+```{r women, eval = F}
+plot(women$height, women$width, xlab = "키", ylab = "몸무게", type = "l", lty = 1, lwd = 1)
+```
+
+축의 출력 범위 제어
+
+```{r women}
+plot(women$height, women$weight, xlim = c(0, max(women$height)), ylim = c(0 ,max(women$weight)), xlab = "키", ylab = "몸무게", main = "키와 몸무게의 변화", pch = 23, col = "blue", bg = "yellow", cex = 1.5)
+```
+
+### Histogram
+
+계급 구간을 설정해 막대 수를 줄여보자.
+
+```{r quakes}
+par(mfrow = c(1,2))
+hist(quakes$mag, col = rainbow(10), xlab = "지진 강도", ylab = "발생 건수", main = "지진 발생 강도의 분포")
+hist(quakes$mag, breaks = seq(4, 6.5, 0.5), col = rainbow(10), xlab = "지진 강도", ylab = "발생 건수", main = "지진 발생 강도의 분포")
+```
+
+| 계급 수 공식 |                       |
+| :----------: | --------------------- |
+|   Sturges    | ceil(1 + 3.3\*log(n)) |
+|     Rice     | ceil(2\*n^10)         |
+
+확률 밀도로 그린 histogram (default histogram)
+
+```{r quakes}
+hist(quakees$mag, freq = F, col = rainbow(10), xlab = "지진 강도", ylab = "확률 밀도", main = "지진 발생 강도의 분포")
+line(density(quakes$mag), lwd = 2)
+```
+
+- 확률 밀도이므로 당연히 막대 넓이의 합은 1이다.
+
+### Box plot
+
+```{r quakes}
+boxplot(quakes$mag, col = "red", xlab = "지진", ylab = "지진 규모", main = "지진 발생 강도의 분포")
+```
+
+- IF (inner fence): Q3(or Q1) ± 1.5\*(Q3 - Q1)
+- OF (outer fence): Q3(or Q1) ± 2\*(Q3 - Q1)
+
+quakes\$mag 다섯 자리 수 요약 보기
+
+```{r quakes}
+min(quakes$mag);  median(quakes$mag);  max(quakes$mag)
+Q <- quantile(quakes$mag)
+Q
+Q[3] - Q[1]; IQR(quakes$mag)
+fence.upper <- Q[3] + 1.5 * IQR(quakes$mag)
+fence.lower <- Q[1] - 1.5 * IQR(quakes$mag)
+fence.upper;  fence.lower
+```
+
+```{r}
+quakes$mag[quakes$mag > fence.upper]
+max(quakes$mag[quakes$mag <= fence.upper])
+quakes$mag[quakes$mag < fence.lower]
+```
+
+### 연습용 프로젝트
+
+1. CSNow의 거래 데이터를 이용한 분포 분석
+
+```{r}
+url <- "https://raw.githubusercontent.com/cran/BTYD/master/cdnowElog.csv"
+data <- read.csv(url, header = T)
+```
+
+```{r}
+head(data)
+quantity <- data$cds
+max(quantity)
+```
+
+```{r}
+hist(quantity, xlab = "CD 거래량", ylab = "빈도 수", main = "CD 거래량에 대한 빈도 수 히스토그램")
+```
+
+2. 강의 길이에 대한 분포 분석
+
+```{r rivers}
+## data(rivers, package = "datasets")
+## summary(rivers)
+boxplot(rivers, ylab = "강의 길이", main = "강의 길이에 대한 박스 플랏")
+```
+
+- 이탈값과 전반적인 형태에 대해서
