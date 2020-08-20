@@ -7,7 +7,7 @@
 
 ## Python
 
-- Instructor: Colin Morris
+- Instructor: Colin Morris (Data Scientist)
 - [Sub-link](https://www.kaggle.com/learn/python)
 - [python for non-programmers](https://wiki.python.org/moin/BeginnersGuide/NonProgrammers)
 
