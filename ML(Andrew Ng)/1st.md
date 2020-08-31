@@ -8,7 +8,7 @@
 
 English version of modern definition of ML
 
-> A computer program is said to learn from experence E with respect to some class of tasks T and perfomance measure P,, if its perfomance at tasks in T, as measured by p, improves with experience E.<p style="text-align: right;">- Tom Mitchell (Carnegie Mellon University)</p>
+> A computer program is said to learn from experence E with respect to some class of tasks T and perfomance measure P, if its perfomance at tasks in T, as measured by p, improves with experience E.<p style="text-align: right;">- Tom Mitchell (Carnegie Mellon University)</p>
 
 > Machine Learning은 매 만들어지고 사용하는 데이터를 뜻하는 경험(E)과 해당 경험을 위한 작업(T), 작업을 통해 얻어지는 perfomance의 측도인 성능(P)으로 구성된다.
 
@@ -37,7 +37,7 @@ English version of modern definition of ML
 - 따라서, unsupervised Learning grouping은 Clustering으로 몇 개의 group, 몇 개의 구조로 구성되어 있는지를 묻는 것이며 해당 구조체를 cluster라고 부른다.
 - Organize computing clusters, Social network analysis, Market segmentation, Astronomial data analysis
 
-> 음설 관련 clustering<br />[W, s, v] = svd((repmat(sum(x.*x, 1), size(x, 1), 1).*x)\*x');<span style="float: right;">- Source: Sam Roweis, Yair Weiss & Eero Simoncelli</span>
+> 음설 관련 clustering<br />[W, s, v] = svd((repmat(sum(x.*x, 1), size(x, 1), 1).*x)\*x');<p style="text-align: right;">- Source: Sam Roweis, Yair Weiss & Eero Simoncelli</p>
 
 - 대괄호에 대한 자유로운 접근과 세미콜론이 있는 것으로 보아 Java에 가깝지 않을까라는 생각이 드나, Octave라는 open source라고 한다.
 - svd( ): 특이값 분해(singular value decomposition)
