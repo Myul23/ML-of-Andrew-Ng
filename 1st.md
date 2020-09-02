@@ -62,19 +62,19 @@ English version of modern definition of ML
 
 ### Linear Algebra
 
-| keyword                         |                             |                         |
-| ------------------------------- | --------------------------- | ----------------------- |
-| i-indexed in math               | 0-indexed in ML, pr.ming    |
-| scalar                          | (column) vector is n by 1   | row vector is 1 by n    |
-| m by n matrix, \|R^{mxn}        | M_ij (sub matrix)           | A_ij (inner value)      |
-| not commutative                 | 교환법칙이 성립하지 않는다. |
-| associative                     | 결합법칙이 성립한다.        |
-|                                 |                             |                         |
-| Transpose matrix, A', A^t, A^T  | n by m matrix               |
-| Diagonal matrix                 | all non-diagonals is 0      | 정사각행렬, 정칙행렬    |
-| Identity matrix, I              | all diagonals is 1          | commutative             |
-| Inverse matrix, A^(-1)          | Determinant is not zero     | n by n matrix           |
-| Singular (or Degenerate) matrix | not inverse matrix          | Not all have an inverse |
+| keyword                                            |                              |                               |
+| -------------------------------------------------- | ---------------------------- | ----------------------------- |
+| i-indexed in math                                  | 0-indexed in ML, pr.ming     |
+| scalar                                             | (column) vector is n by 1    | row vector is 1 by n          |
+| m by n matrix, \|R<sup>m x n</sup>                 | M<sub> ij</sub> (sub matrix) | A<sub> ij</sub> (inner value) |
+| not commutative                                    | 교환법칙이 성립하지 않는다.  |
+| associative                                        | 결합법칙이 성립한다.         |
+|                                                    |                              |                               |
+| Transpose matrix, A', A<sup>t</sup>, A<sup>T</sup> | n by m matrix                |
+| Diagonal matrix                                    | all non-diagonals is 0       | 정사각행렬, 정칙행렬          |
+| Identity matrix, I                                 | all diagonals is 1           | commutative                   |
+| Inverse matrix, A<sup>-1</sup>                     | Determinant is not zero      | n by n matrix                 |
+| Singular (or Degenerate) matrix                    | not inverse matrix           | Not all have an inverse       |
 
 - Big alphbet vs. Small alphabet
 - add only same dimension matrixes
