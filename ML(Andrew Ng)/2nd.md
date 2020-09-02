@@ -12,17 +12,17 @@ _Multivariate linear Regression_
 
 > hθ(x) = θ'x
 
-| notaion | description                                        |
-| ------- | -------------------------------------------------- |
-| m, n    | use m for sample size and n for number of features |
-| x^i     | input features vector of ith training, \|R^(n+1)   |
-| x^i_j   | value of feature j in ith training                 |
+| notaion                   | description                                              |
+| ------------------------- | -------------------------------------------------------- |
+| m, n                      | use m for sample size and n for number of features       |
+| x<sup>i</sup>             | input features vector of ith training, \|R<sup>n+1</sup> |
+| x<sup>i</sup><sub>j</sub> | value of feature j in ith training                       |
 
 - hθ(x) = θ0 + θ1x1 + θ2x2 + θ3x3 + ... + θnxn<br />
   hθ(x) = θ0x0 + θ1x1 + θ2x2 + θ3x3 + ... + θnxn (when x0 = 1 for (i ∈ 1, ... , m))
 
 - 이래서 테이블 데이터에 대해서 row 인덱스로 i를, column 인덱스로 j를 사용한다.
-- 모델 수식 표기상 x_ij로 표기하지만, 역할에 따라 다시 표기하면 x_ji가 된다.
+- 모델 수식 표기상 x<sub>ij</sub>로 표기하지만, 역할에 따라 다시 표기하면 x<sub>ji</sub>가 된다.
 
 ### Features and polynomial regression
 
@@ -89,9 +89,9 @@ Learning Rate (α)
 | need to choose α                | No need to choose α                                         |
 | needs many iterations           | No need to iterate                                          |
 |                                 |                                                             |
-| O(kn^2)                         | O(n^3), need to compute hat-matrix                          |
+| O(kn<sup>2</sup>)               | O(n<sup>3</sup>), need to compute hat-matrix                |
 | Works well even when n is large | slow if n is very large                                     |
 |                                 | 특정 모델에 대해선 n의 갯수와 별개로 최소제곱법이 최고라고. |
 
-- 역행렬을 계산하는데 feature 갯수의 세제곱만큼 걸리니 O(n^3)으로 표현할 수 있고 n이 크다면 상당히 오래 걸리게 된다.
-- 2010년대로 기억하는데, 그때도 10^4 쯤 돼야 gradient descent를 할 생각이셨다니 역시 automatic이 짱이다.
+- 역행렬을 계산하는데 feature 갯수의 세제곱만큼 걸리니 O(n<sup>3</sup>)으로 표현할 수 있고 n이 크다면 상당히 오래 걸리게 된다.
+- 2010년대로 기억하는데, 그때도 10<sup>4</sup> 쯤 돼야 gradient descent를 할 생각이셨다니 역시 automatic이 짱이다.

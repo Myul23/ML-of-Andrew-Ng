@@ -101,7 +101,7 @@ _다중 분류, 여러 개의 binary classification으로 나누는 게 알고�
 1. One-vs-all (one-vs-rest)
 
 <!--
-> Train a logistic regression classifier hθ^i(x) for each class to predict the probability that y = i<br />
+> Train a logistic regression classifier hθ<sup>i</sup>(x) for each class to predict the probability that y = i<br />
 > On a new input x, to make prediction, pick the claa i that maximizes
 -->
 
@@ -111,7 +111,7 @@ hθ^i(x) = Pr(y = i|x; θ), i = 1,2,3
 
 - 모든 class에 대해 해당 class와 나머지의 binary 분류로 만들어 학습시킨다.
 - 당연하게도 class의 갯수만큼 binary classifier가 나온다.
-- 새로운 데이터에 대해서 가장 가능성, hθ^i(x)이 높은 class로 분류한다.
+- 새로운 데이터에 대해서 가장 가능성, hθ<sup>i</sup>(x)이 높은 class로 분류한다.
 
 ---
 
