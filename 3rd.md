@@ -48,7 +48,7 @@ z = 0, e^0 = 1 → g(z) = 0.5
 θ'x ≥ 0, y = 1
 ```
 
-- hθ(x), g(z), θ'x로 다양하게 response 범위를 나타낼 수 있다.
+- h<sub>θ</sub>(x), g(z), θ'x로 다양하게 response 범위를 나타낼 수 있다.
 - 어떻게 설정하냐에 따라 parameter의 부호가 달라지지만, 기본은 변하지 않는다.
 - for decision boundary, set region each class
 
@@ -67,7 +67,7 @@ Cost(hθ(x), y) → ∞, if y = 0 and hθ(x) → 1
 Cost(hθ(x), y) → ∞, if y = 1 and hθ(x) → 0
 ```
 
-- -MLE: Cost(hθ(x), y) = - y\*ln(hθ(x)) - (1 - y)\*ln(1 - hθ(x))
+- -MLE: Cost(h<sub>θ</sub>(x), y) = - y\*ln(h<sub>θ</sub>(x)) - (1 - y)\*ln(1 - h<sub>θ</sub>(x))
 
 <img src="images/logistic_gradient_descent.JPG" style="display: block; margin: auto;" />
 
@@ -111,7 +111,7 @@ hθ^i(x) = Pr(y = i|x; θ), i = 1,2,3
 
 - 모든 class에 대해 해당 class와 나머지의 binary 분류로 만들어 학습시킨다.
 - 당연하게도 class의 갯수만큼 binary classifier가 나온다.
-- 새로운 데이터에 대해서 가장 가능성, hθ<sup>i</sup>(x)이 높은 class로 분류한다.
+- 새로운 데이터에 대해서 가장 가능성, h<sub>θ</sub><sup>i</sup>(x)이 높은 class로 분류한다.
 
 ---
 
@@ -142,7 +142,7 @@ hθ^i(x) = Pr(y = i|x; θ), i = 1,2,3
 
 _정규화, 수축(shrink) 모수의 추가_
 
-> Keep all the features, but reduce magnitude/values of parameters θj​.<br />
+> Keep all the features, but reduce magnitude/values of parameters θ<sub>j</sub>​.<br />
 > Works well when we have a lot of features, each of which contributes a bit to predicting y.
 
 <!--
@@ -155,8 +155,8 @@ _정규화, 수축(shrink) 모수의 추가_
 <img src="images/regularization.JPG" style="display: block; margin: auto;" />
 
 - λ (lambda, regularization parameter, 정규화 모수)
-- θ0, y-절편의 값은 (x0 = 1이라) 모델 수축(단순화)에 영향력을 행사하지 못하므로 summation에 들어가지 않는다.
-- θ0를 summation에 추가하는 작은 차이가 단위에 따라 큰 차이를 만들 수 있습니다.
+- θ<sub>0</sub>, y-절편의 값은 (x<sub>0</sub> = 1이라) 모델 수축(단순화)에 영향력을 행사하지 못하므로 summation에 들어가지 않는다.
+- θ<sub>0</sub>를 summation에 추가하는 작은 차이가 단위에 따라 큰 차이를 만들 수 있습니다.
 
 |            |     λ가 너무 작으면      |         λ가 너무 크면          |
 | :--------: | :----------------------: | :----------------------------: |
