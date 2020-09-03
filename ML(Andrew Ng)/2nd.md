@@ -10,7 +10,7 @@
 
 _Multivariate linear Regression_
 
-> hθ(x) = θ'x
+> h<sub>θ</sub>(x) = θ'x
 
 | notaion                   | description                                              |
 | ------------------------- | -------------------------------------------------------- |
@@ -18,8 +18,8 @@ _Multivariate linear Regression_
 | x<sup>i</sup>             | input features vector of ith training, \|R<sup>n+1</sup> |
 | x<sup>i</sup><sub>j</sub> | value of feature j in ith training                       |
 
-- hθ(x) = θ0 + θ1x1 + θ2x2 + θ3x3 + ... + θnxn<br />
-  hθ(x) = θ0x0 + θ1x1 + θ2x2 + θ3x3 + ... + θnxn (when x0 = 1 for (i ∈ 1, ... , m))
+- h<sub>θ</sub>(x) = θ<sub>0</sub> + θ<sub>1</sub>x<sub>1</sub> + θ<sub>2</sub>x<sub>2</sub> + θ<sub>3</sub>x<sub>3</sub> + ... + θ<sub>n</sub>x<sub>n</sub><br />
+  h<sub>θ</sub>(x) = θ<sub>0</sub>x<sub>0</sub> + θ<sub>1</sub>x<sub>1</sub> + θ<sub>2</sub>x<sub>2</sub> + θ<sub>3</sub>x<sub>3</sub> + ... + θ<sub>n</sub>x<sub>n</sub>, &nbsp; when x<sub>0</sub> = 1 for (i ∈ 1, ... , m)
 
 - 이래서 테이블 데이터에 대해서 row 인덱스로 i를, column 인덱스로 j를 사용한다.
 - 모델 수식 표기상 x<sub>ij</sub>로 표기하지만, 역할에 따라 다시 표기하면 x<sub>ji</sub>가 된다.
@@ -93,5 +93,5 @@ Learning Rate (α)
 | Works well even when n is large | slow if n is very large                                     |
 |                                 | 특정 모델에 대해선 n의 갯수와 별개로 최소제곱법이 최고라고. |
 
-- 역행렬을 계산하는데 feature 갯수의 세제곱만큼 걸리니 O(n<sup>3</sup>)으로 표현할 수 있고 n이 크다면 상당히 오래 걸리게 된다.
+- 역행렬을 계산하는데 feature 갯수의 세제곱만큼 걸리니 O(n<sup>3</sup>)이고 n이 크다면 상당히 오래 걸리게 된다.
 - 2010년대로 기억하는데, 그때도 10<sup>4</sup> 쯤 돼야 gradient descent를 할 생각이셨다니 역시 automatic이 짱이다.

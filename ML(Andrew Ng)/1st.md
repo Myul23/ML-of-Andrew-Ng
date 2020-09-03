@@ -37,21 +37,20 @@ English version of modern definition of ML
 - 따라서, unsupervised Learning grouping은 Clustering으로 몇 개의 group, 몇 개의 구조로 구성되어 있는지를 묻는 것이며 해당 구조체를 cluster라고 부른다.
 - Organize computing clusters, Social network analysis, Market segmentation, Astronomial data analysis
 
-> 음설 관련 clustering<br />[W, s, v] = svd((repmat(sum(x.*x, 1), size(x, 1), 1).*x)\*x');<p style="text-align: right;">- Source: Sam Roweis, Yair Weiss & Eero Simoncelli</p>
+> 음성 관련 clustering<br />[W, s, v] = svd((repmat(sum(x.*x, 1), size(x, 1), 1).*x)\*x');<p style="text-align: right;">- Source: Sam Roweis, Yair Weiss & Eero Simoncelli</p>
 
-- 대괄호에 대한 자유로운 접근과 세미콜론이 있는 것으로 보아 Java에 가깝지 않을까라는 생각이 드나, Octave라는 open source라고 한다.
 - svd( ): 특이값 분해(singular value decomposition)
 
 ---
 
 ### Basic configuration concepts of ML
 
-|         용어          |                                                                                                                                                                  |
-| :-------------------: | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-|         가설          | h: hypothesis, 우리가 학습시켜 얻은 모델이자 모델의 수식<br />- h(x): X → Y, h maps from x's to y's                                                              |
-|         모수          | parameter, 모델을 결정함에 따라 구해야할 parameters도 결정된다.                                                                                                  |
-| 비용 함수 (손실 함수) | Cost, Loss, J-func<br />모델 모수를 찾을 때 고려할 사항으로, 대체로 오차의 값을 최소화하는 회귀계수를 찾고자 한다.<br />- LOSS: MSE or SSE(최소제곱법) and so on |
-|         목표          | Goal is usually minimize Cost function                                                                                                                           |
+|            용어            |                                                                                                                                                                  |
+| :------------------------: | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+|            가설            | h: hypothesis, 우리가 학습시켜 얻은 모델이자 모델의 수식<br />- h(x): X → Y, h maps from x's to y's                                                              |
+|            모수            | parameter, 모델을 결정함에 따라 구해야 할 parameters도 결정된다.                                                                                                 |
+| 비용 함수<br />(손실 함수) | Cost, Loss, J-func<br />모델 모수를 찾을 때 고려할 사항으로, 대체로 오차의 값을 최소화하는 회귀계수를 찾고자 한다.<br />- LOSS: MSE or SSE(최소제곱법) and so on |
+|            목표            | Goal is usually minimize Cost function                                                                                                                           |
 
 - 생각해보면 ISLR 때부터 parameter 값의 변동에 의한 Loss 값의 그래프는 반복해왔던 거인데, 잘 몰랐다.
 - Contour: 일종의 등고선 그래프로 z축 값이 같은 이들을 연겷한 그래프

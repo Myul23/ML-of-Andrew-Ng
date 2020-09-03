@@ -169,8 +169,6 @@ def func_name(parameter, argument_name, ...):
     return specific values or variables
 ```
 
-- pass: ':'에 대해 함수 없음을 의미하거나 def 내에서 continue와 같은 역할을 하는 것으로 보인다.
-
 ---
 
 ### import modules
