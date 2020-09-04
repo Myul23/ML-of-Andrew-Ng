@@ -6,6 +6,7 @@
 - ':'는 R과 같이 선택된 벡터의 모든 원소를 불러온다.
 - ','를 통해 R에서 ';'처럼 여러 함수를 한 번에 실행시킬 수 있다.
 - R, python과 마찬가지로 break과 continue라는 명칭을 사용한다.
+- in Python, oct2py package
 
 ---
 
