@@ -58,7 +58,7 @@
 | 중심성 |      <i>c<sub>c</sub>(i) = 1/ sum<sub>j</sub>(d<sub>ij</sub>)</i>       | <i>c<sub>c</sub>(i)’ = (1/ sum<sub>j</sub>(d<sub>ij</sub>)) / (1/ (n-1)) = (n-1) / sum<sub>j</sub>(d<sub>ij</sub>)</i> |
 | 중심화 | <i>C<sub>c</sub>(G) = sum(max(c<sub>c</sub>(i)) - c<sub>c</sub>(i))</i> |                             <i>C<sub>c</sub>(G)’ = C<sub>c</sub>(G) / {(n-2) / (2n-3)}</i>                             |
 
-- [네트워크 구조별 근접 정도 비교](images/closeness_of_structures_of_network.JPG)
+- [네트워크 구조별 근접 정도 비교](../images/closeness_of_structures_of_network.JPG)
 
 #### 3\. 중개
 
