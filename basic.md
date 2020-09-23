@@ -108,3 +108,73 @@ English version of modern definition of ML
 
 - Batch Gradient descent: 집단 기울기 하강법, Each step of gradient descent uses all the training examples.
 - Normal Equations method: 반복 최소 이승법, 자료의 범위나 크기가 너무 거대해서 기울기 하강법을 사용할 수 없을 때, 기울기 하강법을 반복하지 않고 Cost의 최솟값을 구하는 방법
+
+---
+
+<!--
+> Overfitting: If we have too many features, the learned hypothesis may fit the training set very well(cost is almost 0), but fail to generalize to new examples (predict prices on new examples).
+-->
+
+## Overfitting
+
+|                   underfitting                    |                  overfitting                   |
+| :-----------------------------------------------: | :--------------------------------------------: |
+|                     과소적합                      |                    과대적합                    |
+|     강한 편향, High bias (데이터 설명력 부족)     |                    low bias                    |
+|                   low variance                    |  높은 분산, High variance (모델 예측력 부족)   |
+|            강한 선입견(preconception)             |              not generalize well               |
+| 데이터랑 모양이 다른 경우로 모델 평가가 형편없다. | 오차를 줄이는데 집중해서 변동성이 너무 커졌다. |
+
+- 역사적으로 또는 기술적으로 정해진 이름들이라 조금 다르게 받아들여질 수 있다.
+
+### 1. Reduce number of features
+
+> Manually select which features to keep.<br />
+> Model selection algorithm.
+
+- 변수를 모델에서 제외하는 것은 해당 변수로만 설명 가능하던 response의 부분 정보을 버린다는 것과 같다.
+
+### 2. Regularization
+
+_정규화, 수축(shrink) 모수의 추가_
+
+> Keep all the features, but reduce magnitude/values of parameters θ<sub>j</sub>​.<br />
+> Works well when we have a lot of features, each of which contributes a bit to predicting y.
+
+<!--
+- Small values for parameters θ -> "Simpler" hypothesis, Less prone to overfitting
+-->
+
+- 모델에 설명력이 약한 변수나 poly-term에 큰 수를 곱해 panalty로 cost-function을 구성하면, cost를 최소화시키기 위해 panelty term의 parameter는 0으로 수렴하게 되고, 이를 통해 해당 term을 모델에 넣지 않은 것 같은 효과를 낸다. 이것이 정규화의 핵심이다.
+- 그러나 parameter의 값이 0으로 수렴할 뿐이지, 실제로 0의 값을 가지지는 못해 어떤 변수도 배제하지 않는다.
+
+<img src="images/regularization.JPG" style="display: block; margin: auto;" />
+
+- λ (lambda, regularization parameter, 정규화 모수)
+- θ<sub>0</sub>, y-절편의 값은 (x<sub>0</sub> = 1이라) 모델 수축(단순화)에 영향력을 행사하지 못하므로 summation에 들어가지 않는다.
+- θ<sub>0</sub>를 summation에 추가하는 작은 차이가 단위에 따라 큰 차이를 만들 수 있습니다.
+
+|            |     λ가 너무 작으면      |         λ가 너무 크면          |
+| :--------: | :----------------------: | :----------------------------: |
+| J(θ), cost |   MSE term이 좌지우지    | regularization term이 좌지우지 |
+| 변수 갯수  | 필요 없는 변수 제거 불가 |    모든 변수를 없애는 결과     |
+| 결과적으로 |       overfitting        |          underfitting          |
+
+1. Gradient descent
+
+<img src="images/regularization_gradient_descent.JPG" style="display: block; margin: auto;" />
+
+- Regularization term으로 인해 절편을 제외한 모든 θ가 learning rate term 이전에 θ(1 - α\*λ/m)이 된다.
+- θ에 곱해지는 수는 α\*λ가 양수 소숫값이라 1보다 약간 작은 숫자가 된다.
+
+2. Normal Equation (Non-invertibility)
+
+<img src="images/regularization_normal_equation.JPG" style="display: block; margin: auto;" />
+
+- regualization을 하는 가장 큰 이유는 적절한 회귀계수의 선정과 overfitting을 피하고자 함이다.
+- 따라서, Normal Equation에는 이전과 같은 regualization은 필요가 없다.
+- 그러나 singular matrix가 되면 안 되기에 약간의 값을 추가해주는데, 이 모양이 regualization term과 유사하다.
+
+(addtion) logistic regression (gradient descent)
+
+<img src="images/regularization_logistic.JPG" style="display: block; margin: auto;" />
