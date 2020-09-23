@@ -1,6 +1,7 @@
 > # 시계열
 
 - Professor: 이종협 (2020, 2학기, 성신여자대학교, 시계열 자료분석)
+- Book: [시계열분석과 응용](https://book.naver.com/bookdb/book_detail.nhn?bid=2885511)
 
 ---
 
@@ -14,8 +15,6 @@
   (역삼각형)<i>Y<sub>t</sub></i> = <i>W<sub>t</sub></i> = <i>Y<sub>t</sub></i> - <i>Y<sub>t-1</sub></i> = (1 - <i>B</i>)<i>Y<sub>t</sub></i>
 - <i>Y<sub>t</sub></i>의 2차 차분: 1차 차분의 1차 차분
   (역삼각형)<sup>2</sup><i>Y<sub>t</sub></i> = (역삼각형)(역삼각형)<i>Y<sub>t</sub></i> = (1 - <i>B</i>)(1 - <i>B</i>)<i>Y<sub>t</sub></i> = <i>Y<sub>t</sub></i> - 2<i>Y<sub>t-1</sub> + Y<sub>t-2</sub></i>
-- (in SAS) 차분함수: DIFn(차분할 변수) = <i>Y<sub>t</sub></i> - <i>Y<sub>t-n</sub></i>
-- (in SAS) 시차변수 생성: LAGn(차분할 변수) = <i>Y<sub>t-n</sub></i>
 
 ---
 
@@ -29,7 +28,7 @@ _시간이 경과함에 따라 관측된 자료_
 | :---------: | ------------------------------------------- |
 | description | 시계열 자료들의 생성 구조를 이해하고 기술   |
 | forecasting | 현재까지 관측된 값들로부터 미래의 값을 예측 |
-|   control   | 생성된 시스템으 제어                        |
+|   control   | 생성된 시스템의 제어                        |
 
 - 시계열 자료에 대한 stochastic method
 - 기존의 통계분석과는 독립성의 위반(시간에 의존)이라는 점에서 매우 다르다.
@@ -37,6 +36,10 @@ _시간이 경과함에 따라 관측된 자료_
 - 만일 변화가 있다면 모형을 최신화하거나 업데이트하는 노력이 필요하다.
 
 <br />
+
+#### 0. 중요 개념
+
+- 차분: 현재 시점과 이전 시점의 차이, &nbsp; <i>W<sub>t</sub> = Y<sub>t</sub> - Y<sub>t-1</sub></i>
 
 #### 1. 이산 시계열 (Discrete time series)
 
