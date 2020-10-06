@@ -50,12 +50,12 @@
 
 ### addition for String
 
-| What you type... | What you get | example                 | print(example)        |
-| ---------------- | ------------ | ----------------------- | --------------------- |
-| \'               | '            | 'What\'s up?'           | What's up?            |
-| \"               | "            | "That's \"cool\""       | That's "cool"         |
-| \ \              | \            | "Look, a mountain: /\\" | Look, a mountain: /\  |
-| \n               |              | "1\n2 3"                | 1<br />2 3            |
+| What you type... | What you get | example                 | print(example)       |
+| ---------------- | ------------ | ----------------------- | -------------------- |
+| \'               | '            | 'What\'s up?'           | What's up?           |
+| \"               | "            | "That's \"cool\""       | That's "cool"        |
+| \ \              | \            | "Look, a mountain: /\\" | Look, a mountain: /\ |
+| \n               |              | "1\n2 3"                | 1<br />2 3           |
 
 ```
 """string""" == <pre>string</pre>
