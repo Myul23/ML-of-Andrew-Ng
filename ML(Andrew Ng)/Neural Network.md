@@ -1,4 +1,4 @@
-i> # Machine Learning
+> # Machine Learning
 
 - Instructor: Andrew Ng
 - Lectures: [Coursera](https://www.coursera.org/learn/machine-learning?action=enroll)
