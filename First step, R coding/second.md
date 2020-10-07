@@ -254,13 +254,13 @@ plot(women$height, women$weight, xlab = "키", ylab = "몸무게", type = "p")
 
 <img src="second_files/figure-gfm/unnamed-chunk-16-1.png" style="display: block; margin: auto;" />
 
-| type | desciption              | type | desciption            |
-| :--: | ----------------------- | :--: | --------------------- |
-|  p   | point                   |  l   | line                  |
-|  b   | point & line            |  c   | only line from b      |
-|  o   | alike b                 |  h   | show graphical height |
-|  s   | like Gauss’s stair plot |  S   | alike s               |
-|  n   | none                    |      |                       |
+| type  | desciption              | type  | desciption            |
+| :---: | ----------------------- | :---: | --------------------- |
+|   p   | point                   |   l   | line                  |
+|   b   | point & line            |   c   | only line from b      |
+|   o   | alike b                 |   h   | show graphical height |
+|   s   | like Gauss’s stair plot |   S   | alike s               |
+|   n   | none                    |       |                       |
 
 lwd를 다르게 설정해보자.
 
