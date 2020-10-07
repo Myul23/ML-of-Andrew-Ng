@@ -327,7 +327,7 @@ url <- paste(searchUrl, "?query=", query, "&display=20", sep="")
 <!-- end list -->
 
 ``` r
-doc <- getURL(url, httpheader = c("Content-Type", = "application/xml", "X-Naver-Client-id" = Client_ID,
+doc <- getURL(url, httpheader = c("Content-Type" = "application/xml", "X-Naver-Client-id" = Client_ID,
               "X-Naver-Client-Secret" = Client_Secret))
 doc
 ```
@@ -433,7 +433,7 @@ url <- paste(searchUrl, "?query=", query, "&display=20", sep="")
 ```
 
 ``` r
-doc <- getURL(url, httpheader = c("Content-Type", = "application/xml", "X-Naver-Client-id" = Client_ID,
+doc <- getURL(url, httpheader = c("Content-Type" = "application/xml", "X-Naver-Client-id" = Client_ID,
               "X-Naver-Client-Secret" = Client_Secret))
 
 xmlFile <- xmlParse(doc)
