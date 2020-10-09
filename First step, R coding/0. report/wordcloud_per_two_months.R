@@ -40,7 +40,10 @@ for (start in 1:135782) {
 # 세계일보: div#wrapNews.targetWrap, div#wps_container, div#mcontent, div#wrqpCont, div#wps_layout1, section#contMain, div#wps_layout1_box2, div#article_txt, article.viewBox, p(s)
 
 url = "http://www.phmbc.co.kr/www/news/desk_news?idx=169075&mode=view"
-base = read_html(GET(url, user_agent(agent = "")))
+header = httr::user_agent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.121 Safari/537.36 Edg/85.0.564.70")
+first_result = httr::GET(url, header)
+first_result$status_code == 200
+base = read_html(first_result)
 title = html_nodes(base, "div#wrap") %>% html_nodes("#container") %>%
         html_nodes("#content") %>% html_nodes("p") %>% html_text()
 
