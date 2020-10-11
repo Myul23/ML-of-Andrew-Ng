@@ -1,8 +1,11 @@
 .vscode
 test.*
 
-__pycache__
+# R이 있다면 R의 datafile들을 제거해야 할 필요가 
+.Rhistory
+.RData
 
+__pycache__
 # quizes 돌리다가
 *.txt
 # 몇 주차.txt가 생길 것을 없애고자
