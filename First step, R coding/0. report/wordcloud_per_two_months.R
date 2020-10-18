@@ -37,42 +37,42 @@ start = 0
 # 고통의 시작
 desc = c(); skip = c()
 # 총 1,357,818건, 최대 10개씩
-for (i in 0:1000) {
-  start = i*10 + 1
+for (i in 0:136) {
+  start = i*100 + 1
   url = paste(urlPart1, query, urlPart2, sortNum, urlPart3, date1, urlPart4, date2, urlPart5, start, sep="")
   # Naver는 굳이 header 안 줘도 됐던 것 같다.
   urlMoum = read_html(url)
   
   # li#sp_nws1, (dt, a href)
   middle_point = html_nodes(urlMoum, "div#container") %>% html_nodes("ul.type01") %>%
-    html_nodes("dt") %>% html_nodes("a") %>% html_attr("href")
+                 html_nodes("dt") %>% html_nodes("a") %>% html_attr("href")
   # 지금 모양새가 제목이랑 언론사는 base에서 따는 게 좋을 듯?
   
-  # 영자 site는 없애버릴까.
+  # 영자 site는 이후 단어 처리에서 사라진다.
   for (j in 1:10) {
     check = 0
     # 그냥 하면 접근 불가고 user-agent를 주면 데이터 파일이 이상하다고 하고, 후...
     tryCatch({ element_base = read_html(middle_point[j]) },
-             error = function(e) { tryCatch({
-               check_point = GET(middle_point[j])
-               element_base = read_html(check_point)
-             }, error = function(e) { tryCatch({
-               header = user_agent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.121 Safari/537.36 Edg/85.0.564.70")
-               check_point = GET(middle_point[j], header)
-               if (check_point$status_code != 200) {
-                 skip = c(skip, middle_point[j])
-                 check = 1
-               }}, error = function(e) {
-                 skip = c(skip, middle_point[j])
-                 check = 1
-               })
-             })
-             })
+        error = function(e) { tryCatch({
+          check_point = GET(middle_point[j])
+          element_base = read_html(check_point)
+        }, error = function(e) { tryCatch({
+          header = user_agent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.121 Safari/537.36 Edg/85.0.564.70")
+          check_point = GET(middle_point[j], header)
+          if (check_point$status_code != 200) {
+            skip = c(skip, middle_point[j])
+            check = 1
+          }}, error = function(e) {
+            skip = c(skip, middle_point[j])
+            check = 1
+          })
+        })
+    })
     if (check == 1) next
     # print(element_base)
     tryCatch({
       description = html_nodes(element_base, "div[id~=wrap]") %>% html_nodes("[id~=container]") %>%
-        html_nodes("[id~=content]") %>% html_text()
+                    html_nodes("[id~=content]") %>% html_text()
       if (length(description) == 0) {
         description = html_nodes(element_base, "article") %>% html_text()
         if (length(description) == 0) {
@@ -84,7 +84,7 @@ for (i in 0:1000) {
               if (length(description) == 0) {
                 skip = c(skip, middle_point[j])
                 next
-              }}}}}
+      }}}}}
       desc = c(desc, description)
     }, error = function(e) { skip = c(skip, middle_point[j]) })
   }
@@ -111,15 +111,15 @@ for (i in 0:1000) {
 
 # 본격적으로 워드 클라우드 그리기
 # nouns_base = extractNoun(desc)
-# nouns_base = nouns(iconv(desc, "utf-8"))
+nouns_base = nouns(iconv(desc, "utf-8"))
 
 # extractNoun와 nouns의 인자 제한 범위를 훌쩍 넘겨 버려서 그걸 고쳐보고자 한 것들.
-# print(length(desc))
-num = length(desc)
+print(length(desc))
 # 와.. 내가 살다살다 input buffer를 초과할 줄이야. 그 부담 줄여주려 만든 것.
-for (i in 1:8) { desc = c(desc, "") }
+for (i in 1:6) { desc = c(desc, "") }
+num = length(desc)/46
 nouns_base = c()
-for (i in 0:500) {
+for (i in 0:45) {
   result = nouns(iconv(desc[(i*num + 1):(i + 1)*num], "utf-8"))
   nouns_base = c(nouns_base, result)
 }
@@ -145,12 +145,12 @@ ele_nouns = gsub(" ", "", ele_nouns, fixed = TRUE)
 # ele_nouns = gsub("\n.*", "", ele_nouns)         # 혹시 몰라서 준비.
 
 # about COVID-19
-nouns = gsub("^신종.*", "", ele_nouns)
-nouns = gsub("^코로나.*", "", nouns)
-nouns = gsub("^바이러스.*", "", nouns)
-nouns = gsub("^감염증.*", "", nouns)
-nouns = gsub("확진자.*", "확진자", nouns)
-nouns = gsub("감염자", "확진자", nouns)
+# nouns = gsub("^신종.*", "", ele_nouns)
+# nouns = gsub("^코로나.*", "", nouns)
+# nouns = gsub("^바이러스.*", "", nouns)
+# nouns = gsub("^감염증.*", "", nouns)
+# nouns = gsub("확진자.*", "확진자", nouns)
+# nouns = gsub("감염자", "확진자", nouns)
 
 # # 특이사항들을 합치거나 없애봅시다.
 # nouns = gsub("이태", "이태원", nouns)
@@ -160,7 +160,7 @@ nouns = gsub("감염자", "확진자", nouns)
 # nouns = gsub("영상$", "", nouns)                # 동영상 정보가 남았더라고. 근데 양을 늘리면 필요없을 것 같다.
 
 
-final = nouns[nchar(nouns) >= 2]                  # 왜 그렇게 되었는지 정말 모르겠지만, 공백 처리한 게 있어서 한 글자로 남은 것도 있더라구요.
+final = ele_nouns[nchar(ele_nouns) >= 2]          # 왜 그렇게 되었는지 정말 모르겠지만, 공백 처리한 게 있어서 한 글자로 남은 것도 있더라구요.
 wordFreq = table(final)
 wordFreq = sort(wordFreq, decreasing = T)
 
@@ -169,6 +169,6 @@ wordFreq = sort(wordFreq, decreasing = T)
 # set.seed(100)
 # wordcloud(words = names(wordFreq), freq = wordFreq, scale = c(8, 1.8), colors = pal, min.freq = 5, random.order = F,  random.color = F)
 
-# frequency = wordFreq[wordFreq >= 50]
+frequency = wordFreq[wordFreq >= 50]
 set.seed(100)
-wordcloud2(wordFreq, size = 0.5, color = "random-light")
+wordcloud2(wordFreq, size = 1, color = "random-light")
