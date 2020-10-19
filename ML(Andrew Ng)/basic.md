@@ -17,6 +17,11 @@ English version of modern definition of ML
 - 이런 것을 경험으로부터 학습(learn)했다고 표현한다.
 - 이전 Arthur Samuel: ML이란 컴퓨터가 명시적 프로그램 없이 스스로 학습할 수 있는 능력을 공부하는 학문.
 
+> Machine Learning is a field of study that gives computers the ability to learn without being explicitly programmed<p style="text-align: right;">- Arthur Samuel (1959)</p>
+
+- 모든 경우의 수를 프로그래머가 다 알아내어 프로그래밍하는 것은 사실상 불가능.
+- 이래서 모든 경우의 수를 코딩하는 것이 아니라 특정 기준을 통해 상황을 정의하고 그에 따라 행동하자.
+
 ---
 
 ### Three compositions of ML
@@ -25,17 +30,24 @@ English version of modern definition of ML
 
 > In supervised learning, we are given a data set and already know what our correct output should look like, having the idea that there is a relationship between the input and the output.
 
-- 지도 학습
+- 지도 학습 (Supervised Learning, learning with labeled examples)
 - Supervised Learning means using data set includes correct outputs.
 - Regression은 연속이라는 특징을 가진 값을 모형화하고 예측하려고 한다는 것을 뜻한다.
 - Claasification은 연속하지 않은, 특히 범주적인 특징을 가진 값들에 대한 모형화와 예측을 시도하는 것이다.
 
 > Unsupervised Learning allows us to approach problems with little or no idea what our results should look like. We can derive this structure by clustering the data based on relationships among the variables in the data.
 
-- 비지도 학습
+- 비지도 학습 (Unsupervised Learning, un-labeled data, grouping and clustering)
 - class 데이터가 없는 경우, 모두 같은 class인 경우, class라는 변수 자체가 없는 경우로 나뉜다.
 - 따라서, unsupervised Learning grouping은 Clustering으로 몇 개의 group, 몇 개의 구조로 구성되어 있는지를 묻는 것이며 해당 구조체를 cluster라고 부른다.
 - Organize computing clusters, Social network analysis, Market segmentation, Astronomial data analysis
+
+| type detail                | example                                            |
+| -------------------------- | -------------------------------------------------- |
+| Regression                 | predicting final exam score based on time spent    |
+| binary Clssification       | pass/non-pass based on time spent                  |
+| multi-label Classification | letter grade(A, B, C, D and F) based on time spent |
+<br />
 
 > 음성 관련 clustering<br />[W, s, v] = svd((repmat(sum(x.*x, 1), size(x, 1), 1).*x)\*x');<p style="text-align: right;">- Source: Sam Roweis, Yair Weiss & Eero Simoncelli</p>
 
