@@ -312,6 +312,7 @@ average.path.length(G.Y)
 
 ### 페이스북 사용자 네트워크 분석
 
+- 다른 연관된 사용자의 이름을 데이터로 갖는 형태
 - facebook_combined.txt in Social networks of Stanford Large Network
   Dataset Collection
 - <https://snap.stanford.edu>
