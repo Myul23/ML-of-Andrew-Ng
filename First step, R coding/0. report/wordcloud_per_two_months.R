@@ -172,3 +172,7 @@ wordFreq = sort(wordFreq, decreasing = T)
 frequency = wordFreq[wordFreq >= 50]
 set.seed(100)
 wordcloud2(wordFreq, size = 1, color = "random-light")
+
+# library(treemap)
+# treemap(wordFreq, title = "고빈도 단어 트리맵", fontsize.labels = 14, border.col = "white", fontfamily.labels = "AppleGothic")
+# # index = c("word"), vSize = "freq"
