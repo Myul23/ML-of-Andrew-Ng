@@ -1,0 +1,86 @@
+<html>
+
+<head>
+  <style>
+    img {
+      width: 235px;
+      height: 235px;
+      float: left;
+    }
+  </style>
+</head>
+
+<body>
+  <fieldset>
+    일단 제가 말한 걸 해오긴 했습니다만, 아래에 문제가 있습니다.<br />
+    1. 월의 빈도를 월별 단어 상대빈도의 곱으로 하는 것이 옳은가<br />
+    2. 색 배치 문제<br />
+    3. 과연 여기서 무언갈 찾을 수 있을 것인가<br />
+    <br /><br />
+  
+    특히 색배치 문제는 함수 이해 부족인지, 단어마다 색을 지정하는 것만 가능했습니다. (순서대로 1-2월, 3월, 4월, ..., 9월, 10월)<br />
+    colorL = c("cadetblue1", "aquamarine", "springgreen", "turquoise", "cyan3", "aquamarine3", "deepskyblue",
+    "deepskyblue3", "turquoise4")<br />
+    or colorL = c("firebrick2", "thistle1", "coral2", "khaki", "seagreen3", "darkgreen", "royalblue1", "purple2",
+    "grey33")<br />
+    위에 문제로 인해 기본적으로 모든 단어는 처음 등장한 월의 색을 갖습니다.<br />
+    그러나 엣지를 색칠하는 과정에서 이후 나타나는 단어의 색으로 엣지가 물듭니다.<br />
+    <br />
+    다시 말해, 확진과 경제라는 단어가 각각 4월, 5월에 처음 등장했다면 turquoise와 cyan3으로 엣지를 칠합니다.<br />
+    근데 여기서 확진이 5월에도 나타났다면, 확진과 경제 사이의 엣지는 처음에는 turquoise로 칠하지만, 5월 단어를 칠하면서 cyan3으로 바뀝니다.<br />
+    이렇듯 지금 형태는 굉장히 잘 보고 판단해야 합니다.<br />
+    차라리 빈도 상위 단어는 table로 보도록 하고 단어 원을 월별 색으로 칠할까요?<br />
+    <br /><br />
+  
+    그리고 일단 주구장창 뽑아봤습니다. 순서대로<br />
+    11개: 행 합 1.02보다 작은 단어 제거, 상대빈도 0.001 이하 엣지 제거, 최소값(2, 4, 6, 8, 10, 15, 20, 30, 35, 38, 40)<br />
+    5개: 행 합 1.02보다 작은 단어 제거, 상대빈도 0.002 이하 엣지 제거, 최소값(2, 4, 6, 8, 10)<br />
+    3개: 상대빈도 0.001 이하 엣지 제거, 최소값(10, 20, 30)<br />
+    6개: 상대빈도 0.002 이하 엣지 제거, 최소값(2, 4, 6, 8, 10, 15)<br />
+    3개: 상대빈도 0.0015 이하 엣지 제거, 최소값(10, 15, 20)<br />
+    <br />
+  
+    단어를 줄이는 게 더 시각적으로 좋다는 건 알지만, 여기서 더 줄이는 건 단어가 너무 적어지고,<br />
+    초기 목적과는 다른 결과가 나올 겁니다.<br />
+    그래서 내가 얘기했지만, 그냥 넘기셔도..
+  </fieldset>
+
+  <img src="images/0.001_min_2.jpeg" />
+  <img src="images/0.001_min_4.jpeg" />
+  <img src="images/0.001_min_6.jpeg" />
+  <img src="images/0.001_min_8.jpeg" />
+  <img src="images/0.001_min_10.jpeg" />
+  <img src="images/0.001_min_15.jpeg" />
+  <img src="images/0.001_min_20.jpeg" />
+  <img src="images/0.001_min_30.jpeg" />
+  <img src="images/0.001_min_35.jpeg" />
+  <img src="images/0.001_min_38.jpeg" />
+  <img src="images/0.001_min_40.jpeg" />
+  <img />
+
+  <img src="images/min_2.jpeg" />
+  <img src="images/min_4.jpeg" />
+  <img src="images/min_6.jpeg" />
+  <img src="images/min_8.jpeg" />
+  <img src="images/min_10.jpeg" />
+  <img />
+
+  <img src="images/no_0.001_min_10.jpeg" />
+  <img src="images/no_0.001_min_20.jpeg" />
+  <img src="images/no_0.001_min_30.jpeg" />
+  <img />
+
+  <img src="images/no_0.0015_min_10.jpeg" />
+  <img src="images/no_0.0015_min_15.jpeg" />
+  <img src="images/no_0.0015_min_20.jpeg" />
+  <img />
+
+  <img src="images/no_0.002_min_2.jpeg" />
+  <img src="images/no_0.002_min_4.jpeg" />
+  <img src="images/no_0.002_min_6.jpeg" />
+  <img src="images/no_0.002_min_8.jpeg" />
+  <img src="images/no_0.002_min_10.jpeg" />
+  <img src="images/no_0.002_min_15.jpeg" />
+</body>
+
+</html>
