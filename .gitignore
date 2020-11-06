@@ -1,5 +1,6 @@
 .vscode
 test.*
+*.zip
 
 # R이 있다면 R의 datafile들을 제거해야 할 필요가 
 .Rhistory
