@@ -190,8 +190,8 @@ colorT = colorT[, 1]
 # 의미없을 것 같은 행과 열 지우기
 real_final = corFreq
 
-# 1. 각각의 빈도 가중치가 너무 작으면 제거
-real_final[real_final <= 0.0015] = 0 # 너무 복잡하지 않도록 조정합니다.
+# 1. 각각의 빈도 가중치가 너무 작으면 제거 (복잡하지 않도록)
+real_final[real_final <= 0.0015] = 0
 
 # 2. 행(or 열) 합이 너무 작으면 제거
 # removeList = c()
@@ -215,8 +215,8 @@ if (dim(real_final)[1] == dim(real_final)[2]) {
 
 # 진짜 그리기
 netTerms = network(x = real_final, directed = F)
-# netTerms
-# plot(netTerms, vertex.cex = 1) # 중간 확인
+# netTerms # network 구성 확인
+
 netTerms %v% "mode" = ifelse(test = betweenness(netTerms) >= quantile(betweenness(netTerms), probs = 0.95, na.rm = T), yes = "Top", no = "Rest")
 set.edge.value(netTerms, attrname = "edgeSize", value = real_final * 400)
 set.edge.attribute(netTerms, "color", colorT)
