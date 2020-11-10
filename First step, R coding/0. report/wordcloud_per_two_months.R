@@ -37,6 +37,7 @@ start = 0
 # 고통의 시작
 desc = c(); skip = c()
 # 총 1,357,818건, 최대 10개씩
+# 3월: 27,580, 4월: 24,779, 5월: 21,343이었지만, 모두 4000개만
 for (i in 0:136) {
   start = i*100 + 1
   url = paste(urlPart1, query, urlPart2, sortNum, urlPart3, date1, urlPart4, date2, urlPart5, start, sep="")
