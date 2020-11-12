@@ -1,29 +1,36 @@
+# 단어 추출
 library(rvest)
 library(tm)
 library(RmecabKo)
+
+# 네트워크 그리기
 library(network)
 library(RColorBrewer)
-# library(sna)
 library(GGally)
+library(sna)
+
+# 이미지 저장?
+library(htmlwidgets)
+library(webshot)
 
 # base url setting
 urlPart1 = "https://search.naver.com/search.naver?&where=news"
 query = "&query=코로나"
 urlPart2 = "&sm=tab_pge"
-sortNum = "&sort=0"
+sortNum = "&sort=1"
 newsType = "&photo=3"
 urlPart3 = "&field=0&reporter_article=&pd=3"
-date_1 = c("&ds=2020.01.01&de=2020.02.29", "&ds=2020.03.01&de=2020.03.31",
-           "&ds=2020.04.01&de=2020.04.30", "&ds=2020.05.01&de=2020.05.31",
-           "&ds=2020.06.01&de=2020.06.30", "&ds=2020.07.01&de=2020.07.31",
-           "&ds=2020.08.01&de=2020.08.30", "&ds=2020.09.01&de=2020.09.31",
-           "&ds=2020.10.01&de=2020.10.30")
+date_1 = c("&ds=2020.01.01&de=2020.01.31", "&ds=2020.02.01&de=2020.02.29",
+           "&ds=2020.03.01&de=2020.03.31", "&ds=2020.04.01&de=2020.04.30",
+           "&ds=2020.05.01&de=2020.05.31", "&ds=2020.06.01&de=2020.06.30",
+           "&ds=2020.07.01&de=2020.07.31", "&ds=2020.08.01&de=2020.08.30",
+           "&ds=2020.09.01&de=2020.09.31", "&ds=2020.10.01&de=2020.10.30")
 urlPart4 = "&docid=&nso=so:r"
-date_2 = c(",p:from20200101to20200229", ",p:from20200301to20200331",
-           ",p:from20200401to20200430", ",p:from20200501to20200531",
-           ",p:from20200601to20200630", ",p:from20200701to20200731",
-           ",p:from20200801to20200830", ",p:from20200901to20200931",
-           ",p:from20201001to20201030")
+date_2 = c(",p:from20200101to20200131", ",p:from20200201to20200229",
+           ",p:from20200301to20200331", ",p:from20200401to20200430",
+           ",p:from20200501to20200531", ",p:from20200601to20200630",
+           ",p:from20200701to20200731", ",p:from20200801to20200830",
+           ",p:from20200901to20200931", ",p:from20201001to20201030")
 urlPart5 = ",a:all&mynews=0&start="
 start = 0
 
@@ -92,10 +99,17 @@ for (k in 1:length(date_1)) {
   nouns = gsub("코로나", "", nouns)
   nouns = gsub("바이러스", "", nouns)
   nouns = gsub("감염증", "", nouns)
+  nouns = gsub("확진자.*", "확진자", nouns)
   nouns = gsub("감염자", "확진자", nouns)
-
+  
   nouns = gsub("네이버", "", nouns)
-  # nouns = gsub("무단전재금지", "", nouns)
+  nouns = gsub("무단", "", nouns)
+  nouns = gsub("배포", "", nouns)
+  nouns = gsub("전재", "", nouns)
+  nouns = gsub("금지", "", nouns)
+  nouns = gsub("한국", "", nouns)
+  nouns = gsub("뉴스", "", nouns)
+  nouns = gsub("기자", "", nouns)
 
   final = table(nouns[nchar(nouns) >= 2])
   final = sort(final, decreasing = T)
@@ -113,8 +127,8 @@ for (k in 1:length(date_1)) {
   } else { freq_base = merge.data.frame(freq_base, wordFreq, by = "Var1", all = T) }
   print(c(k, "finish"))
 }; rm(k)
-# write.csv(freq_base, "once_save.csv")
-freq_base[1:10,]
+write.csv(freq_base, "once_save.csv")
+# freq_base[1:10,]
 
 
 # 빈도 가중치로 (n X n) 행렬 만들기
@@ -137,21 +151,12 @@ for (i in 1:dim(freq)[1]) {
 }}}}; rm(i); rm(j); rm(k)
 rownames(corFreq) = words
 colnames(corFreq) = words
-corFreq[1:10, 1:10]
+# corFreq[1:10, 1:10]
 
 
-# sorting 안했음, https://rpubs.com/enlik/wordcloud
-# top20 <- head(d, 20)
-# top20$word <- reorder(top20$word, top20$freq)
+# top20은 시간상 제외
 
-# ggplot(top20, aes(x = word, y = freq, fill = word, label = freq)) +
-#   geom_bar(stat="identity", show.legend = FALSE) +
-#   coord_flip() +
-#   labs(title = "Top 20 Most Used Words in Movie Title", x = "Word", y = "Word Count") +
-#   geom_label(aes(fill = word),colour = "white", fontface = "bold", show.legend = FALSE)
-
-
-# network로 그리기
+# network 그리기
 # https://bookdown.org/yuaye_kt/RTIPS/Texnetword-2.html, https://rfriend.tistory.com/221
 # https://briatte.github.io/ggnet/#node-labels
 colorList = c(list("1-2월"), c("3월"), c("4월"), c("5월"), c("6월"), c("7월"), c("8월"), c("9월"), c("10월"))
@@ -160,8 +165,10 @@ for (i in 2:dim(freq_base)[2]) {
     if (!is.na(freq_base[j, i])) { colorList[[i - 1]] = c(colorList[[i - 1]], j) }
 }}; rm(i); rm(j)
 
-colorL = c("cadetblue1", "aquamarine", "springgreen", "turquoise", "cyan3", "aquamarine3", "deepskyblue", "deepskyblue3", "turquoise4")
-# colorL = c("firebrick2", "thistle1", "coral2", "khaki", "seagreen3", "darkgreen", "royalblue1", "purple2", "grey33")
+colorC = c("cadetblue1", "aquamarine", "springgreen", "turquoise", "cyan3",
+  "aquamarine3", "deepskyblue", "deepskyblue3", "turquoise4")
+colorR = rainbow(9)
+for (colorL in c(colorC, colorR)) {
 # 왜 edge마다 색상 주는 게 다중 그룹 데이터는 안 되냐.
 # 중복에 경우, 먼저 언급된 월에 더 가중치를 준 듯한 모양새. (물론 가중치를 줬다기보단 그냥 그 값을 줘버린 거지만.)
 colorT = matrix(nrow = dim(corFreq)[1])
@@ -173,59 +180,52 @@ for (i in 1:length(colorT)) {
 }}}; rm(i); rm(j)
 colorT = colorT[, 1]
 
-# colorT = matrix(nrow = dim(corFreq)[1], ncol = dim(corFreq)[2])
-# for (i in 1:length(colorList)) {
-#   for (j in 2:length(colorList[[i]])) {
-#     for (k in 2:length(colorList[[i]])) {
-#       # colorT[j - 1, k - 1] = colorL[i]
-# }}}; rm(i); rm(j); rm(k)
-# colorT[1:10, 50:55]
-
-# NA to white
-# for (i in 1:dim(colorT)[2]) {
-#   colorT[i,][is.na(colorT[i,])] = "grey15"
-# }; rm(i)
-
 
 # 의미없을 것 같은 행과 열 지우기
 real_final = corFreq
 
-# 1. 각각의 빈도 가중치가 너무 작으면 제거 (복잡하지 않도록)
-real_final[real_final <= 0.0015] = 0
+# 1. 행(or 열) 합이 너무 작으면 제거
+sum_value = seq(1, 1.05, 0.0002)
+for (min_sum in sum_value) {
+removeList = c()
+for (i in 1:dim(real_final)[1]) {
+  if (sum(real_final[i,]) < min_sum) { removeList = c(removeList, i) }
+}; rm(i)
 
-# 2. 행(or 열) 합이 너무 작으면 제거
-# removeList = c()
-# for (i in 1:dim(real_final)[1]) {
-#   if (sum(real_final[i,]) < 1.02) { removeList = c(removeList, i) }
-# }; rm(i)
-# real_final = real_final[, -removeList]
-# real_final = real_final[-removeList, ]
-
-# colorT = colorT[-removeList]
+real_final = real_final[, -removeList]
+real_final = real_final[-removeList, ]
+colorT = colorT[-removeList]
 if (dim(real_final)[1] == dim(real_final)[2]) {
   if (dim(real_final)[1] == length(colorT)) { dim(real_final)
 }}
 
-# colorT = colorT[, -removeList]
-# colorT = colorT[-removeList, ]
-# if (dim(real_final)[1] == dim(real_final)[2]) {
-#   if (dim(colorT)[1] == dim(colorT)[2]) {
-#     if (dim(real_final)[1] == dim(colorT)[1]) { dim(real_final) }
-# }}
+# 2. 각각의 빈도 가중치가 너무 작으면 제거 (복잡하지 않도록)
+values = seq(0, 0.002, 0.0002)
+for (min_value in values) {
+real_final[real_final <= min_value] = 0
+
 
 # 진짜 그리기
 netTerms = network(x = real_final, directed = F)
 # netTerms # network 구성 확인
 
-netTerms %v% "mode" = ifelse(test = betweenness(netTerms) >= quantile(betweenness(netTerms), probs = 0.95, na.rm = T), yes = "Top", no = "Rest")
+# 상위 5%만 색을 달리주는 건데 하지 말까?
+netTerms %v% "mode" = ifelse(test = betweenness(netTerms) >= quantile(betweenness(netTerms),
+    probs = 0.95, na.rm = T), yes = "Top", no = "Rest")
 set.edge.value(netTerms, attrname = "edgeSize", value = real_final * 400)
 set.edge.attribute(netTerms, "color", colorT)
 
-# for문으로 깔끔하게 뽑고 싶었지만, 왜 인지 실패.
-set.seed(100)
-ggnet2(netTerms, mode = "fruchtermanreingold", size.min = 20,
-       node.size = degree(netTerms), node.color = "mode", palette = c("Top" = "darkturquoise", "Rest" = "azure"),
-       edge.size = "edgeSize", edge.color = "color",
-       label = T, label.size = 5, label.color = "grey13") +
-       theme(plot.title = element_text(hjust = 5, face = "bold")) # +
-      #  theme(panel.background = element_rect(fill = "grey15"))
+for (i in c(2, 3, 5, 10, 15, 20, 25, 30, 50)) {
+  ht_name = paste("C:/Users/samsung/Documents/images/htmls/gn", k, ".html", sep = "")
+  name = paste("images/network", k, "_size", i, ".jpg", sep = "")
+  set.seed(100)
+  gn = ggnet2(netTerms, mode = "fruchtermanreingold", size.min = i,
+              node.size = degree(netTerms), node.color = "mode",
+              palette = c("Top" = "darkturquoise", "Rest" = "azure"),
+              edge.size = "edgeSize", edge.color = "color",
+              label = T, label.size = 5, label.color = "grey13") +
+              theme(plot.title = element_text(hjust = 5, face = "bold")) # +
+              #  theme(panel.background = element_rect(fill = "grey15"))
+  saveWidget(gn, ht_name, selfcontained = F)
+  webshot(ht_name, name, delay = 10)
+}; rm(i)
