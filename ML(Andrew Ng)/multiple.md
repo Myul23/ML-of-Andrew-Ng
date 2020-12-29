@@ -1,14 +1,15 @@
 > # Machine Learning
 
-- Instructor: Andrew Ng
-- Lectures: [Coursera](https://www.coursera.org/learn/machine-learning?action=enroll)
-- [Sub-link](https://www.coursera.org/lecture/machine-learning/model-representation-db3jS?utm_source=link&utm_medium=in_course_lecture&utm_content=page_share&utm_campaign=overlay_button)
+- Professor: Andrew Ng
+- Lectures: [Coursera](https://www.coursera.org/learn/machine-learning?action=enroll), [Sub-link](https://www.coursera.org/lecture/machine-learning/model-representation-db3jS?utm_source=link&utm_medium=in_course_lecture&utm_content=page_share&utm_campaign=overlay_button)
+
+<br /><br /><br />
 
 ---
 
 ## Multiple Features Regression
 
-_Multivariate linear Regression_
+*Multivariate linear Regression*
 
 > h<sub>θ</sub>(x) = θ'x
 
@@ -22,15 +23,21 @@ _Multivariate linear Regression_
   h<sub>θ</sub>(x) = θ<sub>0</sub>x<sub>0</sub> + θ<sub>1</sub>x<sub>1</sub> + θ<sub>2</sub>x<sub>2</sub> + θ<sub>3</sub>x<sub>3</sub> + ... + θ<sub>n</sub>x<sub>n</sub>, &nbsp; when x<sub>0</sub> = 1 for (i ∈ 1, ... , m)
 
 - 이래서 테이블 데이터에 대해서 row 인덱스로 i를, column 인덱스로 j를 사용한다.
-- 모델 수식 표기상 x<sub>ij</sub>로 표기하지만, 역할에 따라 다시 표기하면 x<sub>ji</sub>가 된다.
+- 모델 수식 표기상 x<sub>ij</sub>
+
+<br />
+
+<hr style="border-style: dotted; opacity: 0.5;" />
 
 ### Features and polynomial regression
 
 > can combine multiple features into one
 
-- 데이터 분포에 따라 분석가의 재량으로 모델은 제곱근 함수, n차 함수가 될 수 있다.
+- 데이터 분포, 분석가의 재량에 따라 모델은 제곱근 함수, n차 함수가 될 수 있다.
 - one important thing to keep in mind is, if you choose your features this multiple using then feature scaling becomes very important.
 - 같은 변수라 mean normalization보다 scaling에 더 주력한다.
+
+<br />
 
 | Gradient Descent                | Normal Equation                                             |
 | ------------------------------- | ----------------------------------------------------------- |
@@ -157,7 +164,7 @@ Cost(hθ(x), y) → ∞, if y = 0 and hθ(x) → 1
 Cost(hθ(x), y) → ∞, if y = 1 and hθ(x) → 0
 ```
 
-- -MLE: Cost(h<sub>θ</sub>(x), y) = - y\*ln(h<sub>θ</sub>(x)) - (1 - y)\*ln(1 - h<sub>θ</sub>(x))
+- MLE: Cost(h<sub>θ</sub>(x), y) = - y\*ln(h<sub>θ</sub>(x)) - (1 - y)\*ln(1 - h<sub>θ</sub>(x))
 
 <img src="images/logistic_gradient_descent.JPG" style="display: block; margin: auto;" />
 
