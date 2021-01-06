@@ -16,6 +16,8 @@
 
 - markdown 사용법 총정리: [감사합니다](https://heropy.blog/2017/09/30/markdown/)
 - 필요에 따라 코드집이 추가될 수 있다. 그럴 때는 파일화시켜 모아놓도록 합니다.
+- Daja Vu study: First step, R coding
+- BETA study: ML(Andrew Ng)
 
 ---
 
