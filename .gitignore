@@ -8,6 +8,8 @@ test.*
 .Rhistory
 .RData
 
+# PyCharm 환경 변수 파일들로 보임.
+.idea
 __pycache__
 # quizes 돌리다가
 *.txt
