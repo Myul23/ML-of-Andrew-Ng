@@ -16,12 +16,3 @@
 
 - markdown 사용법 총정리: [감사합니다](https://heropy.blog/2017/09/30/markdown/)
 - 필요에 따라 코드집이 추가될 수 있다. 그럴 때는 파일화시켜 모아놓도록 합니다.
-- Daja Vu study: First step, R coding
-- BETA study: ML(Andrew Ng)
-
----
-
-- 논문: [데이터마이닝기법상에서 적합된 예측모형의 평가 : 4개분류예측모형의 오분류율 및 훈련시간 비교평가 중심으로](https://academic.naver.com/article.naver?doc_id=11297936)
-- 강의: [Google ML course](https://developers.google.com/machine-learning/crash-course?hl=ko)
-- 강의: [ML theorem course](https://www.youtube.com/channel/UC5zx8Owijmv-bbhAK6Z9apg/playlists)
-- 과연 이걸 봐도 되는 걸까: [연대 응통 대학원 과정 중](https://statkclee.github.io/yonsei/data/R_Web_Crawling.pdf)
